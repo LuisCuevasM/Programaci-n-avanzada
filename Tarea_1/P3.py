@@ -35,16 +35,18 @@ class PCB:
 
     @medir_tiempo_decorador  # Decoramos la función para medir el tiempo de ejecución
     def Caminos_iterativos(self, x=1, y=1):
-        # Inicializar la matriz con None
-        matriz = [[None] * self.M for _ in range(self.N)]
+        # inicializar la matriz con None
+        matriz = []
+        for i in range(self.N):
+            matriz.append([None] * self.M)
 
-        # Casos base / borde
+        # casos base / borde
         for i in range(self.N):
             matriz[i][self.M - 1] = 1  # Última columna
         for j in range(self.M):
             matriz[self.N - 1][j] = 1  # Última fila
 
-        # Llenar la matriz de abajo hacia arriba y de derecha a izquierda
+        # llenar la matriz de abajo hacia arriba y de derecha a izquierda
         for i in range(self.N - 2, -1, -1):
             for j in range(self.M - 2, -1, -1):
                 matriz[i][j] = matriz[i + 1][j] + matriz[i][j + 1]
